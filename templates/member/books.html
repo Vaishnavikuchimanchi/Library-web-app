@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Available Books</h2>
+<ul>
+    {% for b in books %}
+    <li>{{ b.title }} - {{ b.author }}
+        <a href="{{ url_for('member.borrow_book', book_id=b.id) }}">Borrow</a>
+    </li>
+    {% else %}
+    <li>No books available right now.</li>
+    {% endfor %}
+</ul>
+
+<h2>Borrowed Books</h2>
+<ul>
+    {% for b in borrowed_books %}
+    <li>{{ b.title }} - {{ b.author }}
+        <a href="{{ url_for('member.return_book', book_id=b.id) }}">Return</a>
+    </li>
+    {% else %}
+    <li>You have not borrowed any books.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
